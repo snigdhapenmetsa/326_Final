@@ -10,4 +10,4 @@ class Project:
 class Convert:
     """Class for converting currency."""
 
-#HI
+    def USD_EUR():
