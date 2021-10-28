@@ -5,3 +5,6 @@ class Project:
     def method(): 
         pass
     # hello
+
+class Convert:
+    """Class for converting currency."""
