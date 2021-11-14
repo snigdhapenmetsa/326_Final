@@ -32,7 +32,7 @@ class Person:
             if self.membership is True:
             
     
-class Convert:
+class Conversion_Shop:
     """Class for converting currency."""
 
     def USD_EUR():
