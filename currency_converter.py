@@ -1,4 +1,5 @@
 from argparse import ArgumentParser
+from random import randint
 import sys
 
 class Person:
@@ -10,10 +11,11 @@ class Person:
         membership (boolean): the membership plan a customer has
     """
     
-    def __init__(self, name, balance, membership):
+    def __init__(self, name, balance, membership, items_purchased):
         self.name = name
         self.balance = balance
         self.membership = membership
+        self.items_purchased = items_purchased
         
     def membership_list(self):
         if self.membership == "silver":
@@ -29,7 +31,11 @@ class Currency_Shop:
     """A shop in which customers can use any currency of their choosing.
     
     Attributes:
-        items (list of str): items that customers can purchase from the shop
+        people (dictionary): reads txt and makes a dictionary of people with
+            the persons name as the key and their balance and membership as the
+            values
+        items (list of str): reads txt file and makes a list of items that 
+            customers can purchase from the shop
     """
     
     def __init__(self, person_file, item_file):
@@ -41,8 +47,9 @@ class Currency_Shop:
                 self.name, self.balance, self.membership = line.split(",")
                 self.balance = float(self.balance)
                 self.membership = self.membership.strip()
+                self.items_purchased = list()
                 
-                self.people[self.name] = (self.balance, self.membership)
+                self.people[self.name] = (self.balance, self.membership, self.items_purchased)
         
         self.items = list()
         
@@ -51,7 +58,7 @@ class Currency_Shop:
                 self.items.append(line.strip())
     
 def main(person_file, item_file):
-    transaction = Currency_Shop(person_file, item_file)
+    currency_shop = Currency_Shop(person_file, item_file)
             
 def parse_args(arglist):
     parser = ArgumentParser()
