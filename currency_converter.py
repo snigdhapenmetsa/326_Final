@@ -55,11 +55,19 @@ class Currency_Shop:
         with open(item_file, "r", encoding="utf-8") as f:
             for line in f: 
                 self.items.append(line.strip())
+                
+    def get_person(self, name):
+        if name not in self.people:
+            raise KeyError
+        
+        person = Person(name, self.people[name][0], self.people[name][1], self.people[name][2])
+        return person
     
 def main(person_file, item_file):
     currency_shop = Currency_Shop(person_file, item_file)
     print(currency_shop.people)
     print(currency_shop.items)
+    print(currency_shop.get_person("Abby Miller"))
             
 def parse_args(arglist):
     parser = ArgumentParser()
