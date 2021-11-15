@@ -2,12 +2,12 @@ from argparse import ArgumentParser
 import sys
 
 class Person:
-    """Instantiates a person.
+    """Creates person objects of which are customers who can shop at the store.
     
     Attributes:
-        name (string)
-        balance (int)
-        membership (boolean)
+        name (string): the name of a customer
+        balance (int): the amount of money the customer has to spend
+        membership (boolean): the membership plan a customer has
     """
     
     def __init__(self, name, balance, membership):
@@ -16,10 +16,10 @@ class Person:
         self.membership = membership
 
 class Currency_Shop:
-    """Class for converting currency.
+    """A shop in which customers can use any currency of their choosing.
     
     Attributes:
-        items (list of str)
+        items (list of str): items that customers can purchase from the shop
     """
     
     def __init__(self, person_file, item_file):
