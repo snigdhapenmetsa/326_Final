@@ -1,5 +1,8 @@
 from argparse import ArgumentParser
 import sys
+import requests
+
+rates = {}
 
 class Person:
     """Creates person objects of which are customers who can shop at the store.
@@ -55,6 +58,17 @@ class Currency_Shop:
         with open(item_file, "r", encoding="utf-8") as f:
             for line in f: 
                 self.items.append(line.strip())
+                
+        def converter(self, toCurrency, balance): 
+            """
+            converts customer's balance originally in USD to desired currency
+            parameters: 
+                toCurrency (str) = the currency which user wants to convert to 
+                balance (float) = the members balance"""
+            og_balance = self.people.get(self.name)[0]
+            balance = balance/self.rates["USD"]
+            balance = round(balance*self.rates[toCurrency], 2)
+            print(f"{self.name}'s balance of {og_balance} in USD is {balance} in {toCurrency}")
                 
     def get_person(self, name):
         if name not in self.people:
