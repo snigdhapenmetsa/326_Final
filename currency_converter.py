@@ -1,5 +1,4 @@
 from argparse import ArgumentParser
-from random import randint
 import sys
 
 class Person:
