@@ -1,0 +1,8 @@
+shirt
+notebook
+printer
+pants
+pencil
+pillow
+spoon
+bread
