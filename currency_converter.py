@@ -85,6 +85,7 @@ def main(person_file, item_file, url):
     print(currency_shop.people)
     print(currency_shop.items)
     print(currency_shop.get_person("Abby Miller"))
+    print(currency_shop.converter("EUR", currency_shop.balance))
             
 def parse_args(arglist):
     parser = ArgumentParser()
