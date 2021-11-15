@@ -40,7 +40,7 @@ class Currency_Shop:
             customers can purchase from the shop
     """
     
-    def __init__(self, person_file, item_file):
+    def __init__(self, person_file, item_file, url):
         self.people = {}
         
         with open(person_file, "r", encoding="utf-8") as f:
@@ -58,17 +58,20 @@ class Currency_Shop:
         with open(item_file, "r", encoding="utf-8") as f:
             for line in f: 
                 self.items.append(line.strip())
+        
+        values = values = requests.get(url).json()
+        self.rates = values["rates"] 
                 
-        def converter(self, toCurrency, balance): 
-            """
-            converts customer's balance originally in USD to desired currency
-            parameters: 
-                toCurrency (str) = the currency which user wants to convert to 
-                balance (float) = the members balance"""
-            og_balance = self.people.get(self.name)[0]
-            balance = balance/self.rates["USD"]
-            balance = round(balance*self.rates[toCurrency], 2)
-            print(f"{self.name}'s balance of {og_balance} in USD is {balance} in {toCurrency}")
+    def converter(self, toCurrency, balance): 
+        """Converts customer's balance originally in USD to desired currency
+        
+        Args: 
+            toCurrency (str) = the currency which user wants to convert to 
+            balance (float) = the members balance"""
+        og_balance = self.people[self.name][0]
+        balance = balance/self.rates["USD"]
+        balance = round(balance*self.rates[toCurrency], 2)
+        print(f"{self.name}'s balance of {og_balance} in USD is {balance} in {toCurrency}")
                 
     def get_person(self, name):
         if name not in self.people:
@@ -77,8 +80,8 @@ class Currency_Shop:
         person = Person(name, self.people[name][0], self.people[name][1], self.people[name][2])
         return person
     
-def main(person_file, item_file):
-    currency_shop = Currency_Shop(person_file, item_file)
+def main(person_file, item_file, url):
+    currency_shop = Currency_Shop(person_file, item_file, url)
     print(currency_shop.people)
     print(currency_shop.items)
     print(currency_shop.get_person("Abby Miller"))
