@@ -90,8 +90,9 @@ def parse_args(arglist):
     parser = ArgumentParser()
     parser.add_argument("person_file", help="path to txt file containing people")
     parser.add_argument("item_file", help="path to txt file containing items")
+    parser.add_argument("url", help="url for conversion rates")
     return parser.parse_args(arglist)
 
 if __name__ == "__main__":
     args = parse_args(sys.argv[1:])
-    main(args.person_file, args.item_file)
+    main(args.person_file, args.item_file, args.url)
