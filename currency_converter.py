@@ -32,7 +32,6 @@ class Person:
         """
         self.items_purchased = items_purchased
         
-    def membership_list(self):
         if self.membership == "silver":
             return 10
         elif self.membership == "gold":
