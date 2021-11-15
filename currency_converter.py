@@ -59,6 +59,8 @@ class Currency_Shop:
     
 def main(person_file, item_file):
     currency_shop = Currency_Shop(person_file, item_file)
+    print(currency_shop.people)
+    print(currency_shop.items)
             
 def parse_args(arglist):
     parser = ArgumentParser()
