@@ -1,3 +1,6 @@
+"""Simulates an online shop using a currency converter."""
+
+
 from argparse import ArgumentParser
 import sys
 import requests
@@ -10,7 +13,7 @@ class Person:
     Attributes:
         name (string): the name of a customer
         balance (int): the amount of money the customer has to spend
-        membership (boolean): the membership plan a customer has
+        membership (string): the membership plan a customer has
     """
     
     def __init__(self, name, balance, membership, items_purchased):
@@ -18,9 +21,14 @@ class Person:
         self.balance = balance
         self.membership = membership
         
-    def membership_list(self):
-        """Gives discount depending on if customer is a member, and which level.
+    def membership_list(self, items_purchased):
+        """Gives discount depending on customer's membership status.
         
+        Args:
+            items_purchased (list): items purchased by customer.
+        
+        Returns:
+            Discount (int): represents the discout a customer will receive with purchase.
         """
         self.items_purchased = items_purchased
         
