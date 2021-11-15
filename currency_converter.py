@@ -14,6 +14,16 @@ class Person:
         self.name = name
         self.balance = balance
         self.membership = membership
+        
+    def membership_list(self):
+        if self.membership == "silver":
+            return 10
+        elif self.membership == "gold":
+            return 15
+        elif self.membership == "platinum":
+            return 20
+        elif self.membership == "none":
+            return 0
 
 class Currency_Shop:
     """A shop in which customers can use any currency of their choosing.
