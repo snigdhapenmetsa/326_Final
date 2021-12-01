@@ -1,6 +1,5 @@
 """Simulates an online shop using a currency converter."""
 
-
 from argparse import ArgumentParser
 import sys
 import requests
@@ -16,12 +15,12 @@ class Person:
         membership (string): the membership plan a customer has
     """
     
-    def __init__(self, name, balance, membership, items_purchased):
+    def __init__(self, name, balance, membership):
         self.name = name
         self.balance = balance
         self.membership = membership
         
-    def membership_list(self, items_purchased):
+    def membership_list(self):
         """Gives discount depending on customer's membership status.
         
         Args:
@@ -30,7 +29,6 @@ class Person:
         Returns:
             Discount (int): represents the discout a customer will receive with purchase.
         """
-        self.items_purchased = items_purchased
         
         if self.membership == "silver":
             return 10
@@ -52,7 +50,7 @@ class Currency_Shop:
             customers can purchase from the shop
     """
     
-    def __init__(self, person_file, item_file, url):
+    def __init__(self, person_file, url):
         self.people = {}
         
         with open(person_file, "r", encoding="utf-8") as f:
@@ -61,15 +59,8 @@ class Currency_Shop:
                 self.name, self.balance, self.membership = line.split(",")
                 self.balance = float(self.balance)
                 self.membership = self.membership.strip()
-                self.items_purchased = list()
                 
-                self.people[self.name] = (self.balance, self.membership, self.items_purchased)
-        
-        self.items = list()
-        
-        with open(item_file, "r", encoding="utf-8") as f:
-            for line in f: 
-                self.items.append(line.strip())
+                self.people[self.name] = (self.balance, self.membership)
         
         values = values = requests.get(url).json()
         self.rates = values["rates"] 
@@ -89,23 +80,21 @@ class Currency_Shop:
         if name not in self.people:
             raise KeyError
         
-        person = Person(name, self.people[name][0], self.people[name][1], self.people[name][2])
+        person = Person(name, self.people[name][0], self.people[name][1])
         return person
     
-def main(person_file, item_file, url):
-    currency_shop = Currency_Shop(person_file, item_file, url)
+def main(person_file, url):
+    currency_shop = Currency_Shop(person_file, url)
     print(currency_shop.people)
-    print(currency_shop.items)
     print(currency_shop.get_person("Abby Miller"))
     print(currency_shop.converter("EUR", currency_shop.balance))
             
 def parse_args(arglist):
     parser = ArgumentParser()
     parser.add_argument("person_file", help="path to txt file containing people")
-    parser.add_argument("item_file", help="path to txt file containing items")
     parser.add_argument("url", help="url for conversion rates")
     return parser.parse_args(arglist)
 
 if __name__ == "__main__":
     args = parse_args(sys.argv[1:])
-    main(args.person_file, args.item_file, args.url)
+    main(args.person_file, args.url)
