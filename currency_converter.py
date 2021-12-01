@@ -38,6 +38,9 @@ class Person:
             return 20
         elif self.membership == "none":
             return 0
+        
+    def __repr__(self):
+        return f"Person({self.name}, {self.balance}, {self.membership})"
 
 class Currency_Shop:
     """A shop in which customers can use any currency of their choosing.
