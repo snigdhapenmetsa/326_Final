@@ -92,7 +92,7 @@ class Currency_Shop:
         og_balance = self.people[self.name][0]
         balance = self.balance/self.rates["USD"]
         balance = round(balance*self.rates[self.to_country], 2)
-        print(f"{self.name}'s balance of {og_balance} in USD is {balance} in {self.to_country}")
+        return balance
                 
     def get_person(self, name):
         if name not in self.people:
