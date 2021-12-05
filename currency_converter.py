@@ -90,8 +90,8 @@ class Currency_Shop:
             toCurrency (str) = the currency which user wants to convert to 
             balance (float) = the members balance"""
         og_balance = balance1
-        balance = self.rates[self.to_country]/self.rates["USD"]
-        balance = round(balance1*balance, 2)
+        balance = balance1/self.rates["USD"]
+        balance = round(balance1*self.rates[self.to_country], 2)
         return balance
                 
     def get_person(self, name):
