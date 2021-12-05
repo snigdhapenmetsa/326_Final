@@ -87,8 +87,7 @@ class Currency_Shop:
         """Converts customer's balance originally in USD to desired currency
         
         Args: 
-            toCurrency (str) = the currency which user wants to convert to 
-            balance (float) = the members balance"""
+            balance1 (float) = the members balance"""
         og_balance = balance1
         balance = balance1/self.rates["USD"]
         balance = round(balance1*self.rates[self.to_country], 2)
@@ -108,7 +107,8 @@ def main(person_file, name):
    person = currency_shop.get_person(name)
    print(f"{person.name}'s current balance is {person.balance}.")
    person.buy_ticket()
-   print(f"{person.name} purchased a plane ticket to {person.to_country.strip()}.")
+   print(f"{person.name} purchased a plane ticket to {person.to_country.strip()}."
+         f" Their current balance is {person.balance} in USD.")
    print(f"In {person.to_country.strip()}, {person.name}'s balance is {currency_shop.converter(person.balance)}")
             
 def parse_args(arglist):
