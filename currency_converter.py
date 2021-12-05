@@ -36,8 +36,21 @@ class Person:
             return 15
         elif self.membership == "platinum":
             return 20
-        elif self.membership == "none":
+        else:
             return 0
+        
+    def buy_ticket(self):
+        """A plane ticket from the Team Dunder Airport costs $200. This cost can 
+        be converted to the desired currency of the customer, and the total 
+        is subtracted from their balance.
+        """
+        ticket_cost = 200.0
+        cost = ticket_cost * self.membership_list()
+        if self.balance >= ticket_cost:
+            self.balance -= ticket_cost
+            print(self.balance)
+        else:
+            raise ValueError("Insufficient funds!")
         
     def __repr__(self):
         return f"Person({self.name}, {self.balance}, {self.membership})"
