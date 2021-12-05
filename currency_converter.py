@@ -101,7 +101,7 @@ class Currency_Shop:
         person = Person(name, self.people[name][0], self.people[name][1], self.people[name][2])
         return person
     
-def main(person_file, name, url):
+def main(person_file, name):
    YOUR_ACCESS_KEY = "a702f302693756a5c8c44b988f472fc6"
    url = str.__add__('http://data.fixer.io/api/latest?access_key=', YOUR_ACCESS_KEY)
    currency_shop = Currency_Shop(person_file, url)
@@ -114,10 +114,9 @@ def main(person_file, name, url):
 def parse_args(arglist):
     parser = ArgumentParser()
     parser.add_argument("person_file", help="path to txt file containing people")
-    parser.add_argument("url", help="url for conversion rates")
     parser.add_argument("name", help="Name of person to get data for")
     return parser.parse_args(arglist)
 
 if __name__ == "__main__":
     args = parse_args(sys.argv[1:])
-    main(args.person_file, args.name, args.url)
+    main(args.person_file, args.name)
