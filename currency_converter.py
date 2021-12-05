@@ -108,8 +108,8 @@ def main(person_file, name):
    person = currency_shop.get_person(name)
    print(f"{person.name}'s current balance is {person.balance}.")
    person.buy_ticket()
-   print(f"{person.name} purchased a plane ticket to {person.to_country}.")
-   print(f"In {person.to_country}, {person.name}'s balance is {currency_shop.converter(person.balance)}")
+   print(f"{person.name} purchased a plane ticket to {person.to_country.strip()}.")
+   print(f"In {person.to_country.strip()}, {person.name}'s balance is {currency_shop.converter(person.balance)}")
             
 def parse_args(arglist):
     parser = ArgumentParser()
