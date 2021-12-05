@@ -80,18 +80,18 @@ class Currency_Shop:
                 
                 self.people[self.name] = (self.balance, self.membership, self.to_country)
         
-        values = values = requests.get(url).json()
+        values = requests.get(url).json()
         self.rates = values["rates"] 
                 
-    def converter(self): 
+    def converter(self, balance1): 
         """Converts customer's balance originally in USD to desired currency
         
         Args: 
             toCurrency (str) = the currency which user wants to convert to 
             balance (float) = the members balance"""
-        og_balance = self.people[self.name][0]
-        balance = self.balance/self.rates["USD"]
-        balance = round(balance*self.rates[self.to_country], 2)
+        og_balance = balance1
+        balance = self.rates[self.to_country]/self.rates["USD"]
+        balance = round(balance1*balance, 2)
         return balance
                 
     def get_person(self, name):
