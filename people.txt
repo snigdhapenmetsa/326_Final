@@ -1,10 +1,10 @@
-Abby Miller,452.00,platinum
-Zoey Anastasiadis,324.00,gold
-Snigdha Penmetsa,411.00,silver
-Sally Doolittle,374.00,none
-Aric Bills,2000.00,platinum
-Darryl Pines,199.00,none
-Testudo,915.00,gold
-Marathon Bhad Bhabie,1500.00,silver
-Butterscotch,1000.00,gold
-Dunder,1000000000.00,platinum
+Abby Miller,452.00,platinum,AED
+Zoey Anastasiadis,324.00,gold,YER
+Snigdha Penmetsa,411.00,silver,EUR
+Sally Doolittle,374.00,none,FKP
+Aric Bills,5000.00,platinum,UAH
+Darryl Pines,199.00,none,NZD
+Testudo,915.00,gold,QAR
+Marathon Bhad Bhabie,1500.00,silver,DOP
+Butterscotch,1000.00,gold,TMT
+Dunder,1000000000.00,platinum,HUF
