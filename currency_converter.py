@@ -31,11 +31,11 @@ class Person:
         """
         
         if self.membership == "silver":
-            return 10
+            return .10
         elif self.membership == "gold":
-            return 15
+            return .15
         elif self.membership == "platinum":
-            return 20
+            return .20
         else:
             return 0
         
@@ -45,10 +45,11 @@ class Person:
         is subtracted from their balance.
         """
         ticket_cost = 200.0
-        cost = ticket_cost * self.membership_list()
-        if self.balance >= ticket_cost:
-            self.balance -= ticket_cost
-            print(self.balance)
+        cost = ticket_cost * (1 - self.membership_list())
+        
+        if self.balance >= cost:
+            self.balance -= cost
+            
         else:
             raise ValueError("Insufficient funds!")
         
