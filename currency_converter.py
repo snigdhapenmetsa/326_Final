@@ -13,6 +13,8 @@ class Person:
         name (string): the name of a customer
         balance (int): the amount of money the customer has to spend
         membership (string): the membership plan a customer has
+        to_country (string): 3 uppercase letters signifying the country the 
+            person wants to buy a plane ticket to
     """
     
     def __init__(self, name, balance, membership, to_country):
@@ -28,7 +30,7 @@ class Person:
             items_purchased (list): items purchased by customer.
         
         Returns:
-            Discount (int): represents the discout a customer will receive with purchase.
+            float: represents the discout a customer will receive with purchase.
         """
         
         if self.membership == "silver":
@@ -42,8 +44,12 @@ class Person:
         
     def buy_ticket(self):
         """A plane ticket from the Team Dunder Airport costs $200. This cost can 
-        be converted to the desired currency of the customer, and the total 
-        is subtracted from their balance.
+            be converted to the desired currency of the customer, and the total 
+            is subtracted from their balance.
+            
+        Raises:
+            ValueError: if the person's balance is less than the cost of a ticket,
+                a ValueError is raised.
         """
         ticket_cost = 200.0
         cost = ticket_cost * (1 - self.membership_list())
@@ -61,11 +67,9 @@ class Currency_Shop:
     """A shop in which customers can use any currency of their choosing.
     
     Attributes:
-        people (dictionary): reads txt and makes a dictionary of people with
-            the persons name as the key and their balance and membership as the
-            values
-        items (list of str): reads txt file and makes a list of items that 
-            customers can purchase from the shop
+        people (dictionary): reads txt file and makes a dictionary of people with
+            the persons name as the key and their balance, membership, and the 
+            the country they want a plane ticket to as the values.
     """
     
     def __init__(self, person_file, url):
@@ -83,17 +87,33 @@ class Currency_Shop:
         values = requests.get(url).json()
         self.rates = values["rates"] 
                 
-    def converter(self, balance1): 
+    def converter(self, person_balance): 
         """Converts customer's balance originally in USD to desired currency
         
         Args: 
-            balance1 (float) = the members balance"""
-        og_balance = balance1
-        balance = balance1/self.rates["USD"]
-        balance = round(balance1*self.rates[self.to_country], 2)
+            person_balance (float) = the person's balance
+            
+        Returns:
+            float: the person's balance, converted into the currency of the 
+                desired country
+        """
+        balance = person_balance/self.rates["USD"]
+        balance = round(person_balance * self.rates[self.to_country], 2)
         return balance
                 
     def get_person(self, name):
+        """Instantiates a Person object.
+
+        Args:
+            name (string): the name of a person.
+
+        Raises:
+            KeyError: if the name provided is not part of the people list, raise 
+            a KeyError.
+
+        Returns:
+            object: a Person object of a person defined by the txt file
+        """
         if name not in self.people:
             raise KeyError
         
@@ -101,17 +121,25 @@ class Currency_Shop:
         return person
     
 def main(person_file, name):
-   YOUR_ACCESS_KEY = "a702f302693756a5c8c44b988f472fc6"
-   url = str.__add__('http://data.fixer.io/api/latest?access_key=', YOUR_ACCESS_KEY)
+   access_key = "a702f302693756a5c8c44b988f472fc6"
+   url = str.__add__('http://data.fixer.io/api/latest?access_key=', access_key)
    currency_shop = Currency_Shop(person_file, url)
    person = currency_shop.get_person(name)
-   print(f"{person.name}'s current balance is {person.balance}.")
+   print(f"{person.name}'s current balance is {person.balance} in USD.")
    person.buy_ticket()
    print(f"{person.name} purchased a plane ticket to {person.to_country.strip()}."
          f" Their current balance is {person.balance} in USD.")
    print(f"In {person.to_country.strip()}, {person.name}'s balance is {currency_shop.converter(person.balance)}")
             
 def parse_args(arglist):
+    """ Parse command-line arguments.
+    
+    Args:
+        arglist (list of str): arguments from the command line.
+    
+    Returns:
+        namespace: the parsed arguments, as a namespace.
+    """
     parser = ArgumentParser()
     parser.add_argument("person_file", help="path to txt file containing people")
     parser.add_argument("name", help="Name of person to get data for")
