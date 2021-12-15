@@ -97,7 +97,6 @@ class Currency_Shop:
             float: the person's balance, converted into the currency of the 
                 desired country
         """
-        print(self.people.get(name)[2])
         balance = person_balance/self.rates["USD"]
         balance = round(balance * self.rates[self.people.get(name)[2]], 2)
         return balance
