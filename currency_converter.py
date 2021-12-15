@@ -78,7 +78,7 @@ class Currency_Shop:
         with open(person_file, "r", encoding="utf-8") as f:
             for line in f:
                 
-                self.name, self.balance, self.membership, self.to_country = line.split(",")
+                self.name, self.balance, self.membership, self.to_country = line.strip().split(",")
                 self.balance = float(self.balance)
                 self.membership = self.membership.strip()
                 
@@ -87,7 +87,7 @@ class Currency_Shop:
         values = requests.get(url).json()
         self.rates = values["rates"] 
                 
-    def converter(self, person_balance): 
+    def converter(self, name, person_balance): 
         """Converts customer's balance originally in USD to desired currency
         
         Args: 
@@ -97,8 +97,9 @@ class Currency_Shop:
             float: the person's balance, converted into the currency of the 
                 desired country
         """
+        print(self.people.get(name)[2])
         balance = person_balance/self.rates["USD"]
-        balance = round(person_balance * self.rates[self.to_country], 2)
+        balance = round(balance * self.rates[self.people.get(name)[2]], 2)
         return balance
                 
     def get_person(self, name):
@@ -129,7 +130,7 @@ def main(person_file, name):
    person.buy_ticket()
    print(f"{person.name} purchased a plane ticket to {person.to_country.strip()}."
          f" Their current balance is {person.balance} in USD.")
-   print(f"In {person.to_country.strip()}, {person.name}'s balance is {currency_shop.converter(person.balance)}")
+   print(f"In {person.to_country.strip()}, {person.name}'s balance is {currency_shop.converter(person.name,person.balance)}")
             
 def parse_args(arglist):
     """ Parse command-line arguments.
