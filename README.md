@@ -25,6 +25,7 @@ Abby:
 I worked mainly on the Person class aspect of the project. First, I did the membership_list function which gives a discount to the customer depending on their membership status. Next, I did the buy_ticket method which calculates the new price of the customer's plane ticket, also dependant on their membership status. I also added a __repr__ magic method to return the Person object representation in string format.
 
 Zoey: 
+I worked on the __init__ methods in both the Person class and the Currency_Shop class, which assigns attributes and in the Currency_Shop class it reads a txt file, as well as the get_person method in the Currency_Shop, which instantiates a person. I also added the parse_args method and if __name__ == "__main__" method.
 
 Citations: 
  Currency converter in python. GeeksforGeeks. (2019, December 12). Retrieved November 15, 2021, from https://www.geeksforgeeks.org/currency-converter-in-python/. 
