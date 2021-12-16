@@ -22,8 +22,9 @@ Snigdha:
 I took charge of the currency conversion aspect of the program. I created the converter method, and integrated it into the __init__ method of the Currency_Shop class. I also helped to create the main function and integrated the currency conversion into the output of the program. The source code used in the converter method of the Currency_Shop class is derived from https://www.geeksforgeeks.org/currency-converter-in-python/ which creates class and uses input from the user to provide output. In our program's case, we did not need to take input on where the user would want to convert to, or what currency they are converting from, since all of the members are from the US, so I eliminated an input as well as an extra argument in the converter method. 
 
 Abby: 
+I worked mainly on the Person class aspect of the project. First, I did the membership_list function which gives a discount to the customer depending on their membership status. Next, I did the buy_ticket method which calculates the new price of the customer's plane ticket, also dependant on their membership status. I also added a __repr__ magic method to return the Person object representation in string format.
 
-Zoe: 
+Zoey: 
 
 Citations: 
  Currency converter in python. GeeksforGeeks. (2019, December 12). Retrieved November 15, 2021, from https://www.geeksforgeeks.org/currency-converter-in-python/. 
