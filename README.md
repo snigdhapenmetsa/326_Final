@@ -16,7 +16,7 @@ This is a text file that contains the data on each of our example members includ
 
 To run our code from the command line, simply type in python3 currency_converter.py people.txt "_Name of person in people.txt file_"
 
-The interpretation of our program is pretty simple, it outlines the person, their destination in terms of its currency, their begining balance, and how much they have left both in USD, and the currency of the country they are visiting
+The interpretation of our program is pretty simple, it outlines the person, their destination in terms of its currency, their beginning balance, and how much they have left both in USD, and the currency of the country they are visiting.
 
 Snigdha: 
 I took charge of the currency conversion aspect of the program. I created the converter method, and integrated it into the __init__ method of the Currency_Shop class. I also helped to create the main function and integrated the currency conversion into the output of the program. The source code used in the converter method of the Currency_Shop class is derived from https://www.geeksforgeeks.org/currency-converter-in-python/ which creates class and uses input from the user to provide output. In our program's case, we did not need to take input on where the user would want to convert to, or what currency they are converting from, since all of the members are from the US, so I eliminated an input as well as an extra argument in the converter method. 
