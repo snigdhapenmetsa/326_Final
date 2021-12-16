@@ -1,7 +1,6 @@
 """Simulates an online shop using a currency converter."""
 
 from argparse import ArgumentParser
-from os import name
 import sys
 import requests
 
