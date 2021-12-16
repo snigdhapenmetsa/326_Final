@@ -88,11 +88,13 @@ class Currency_Shop:
         self.rates = values["rates"] 
                 
     def converter(self, name, person_balance): 
+    # This method is reliant on  source code from 
+    # https://www.geeksforgeeks.org/currency-converter-in-python/
+    # I changed it to fit to our problem statement by modifying the variables in the calculations
         """Converts customer's balance originally in USD to desired currency
-        
         Args: 
+            name (str) = The person's name whose balance will be converted
             person_balance (float) = the person's balance
-            
         Returns:
             float: the person's balance, converted into the currency of the 
                 desired country
