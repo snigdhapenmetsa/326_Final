@@ -73,6 +73,15 @@ class Currency_Shop:
     """
     
     def __init__(self, person_file, url):
+        """Assigns attributes, reads a list of people from a .txt file, and 
+            gets conversion rates from an API for the currency converter.
+
+        Args:
+            person_file (string): the filepath to a .txt file with information
+                about people who can buy a plane ticket from the shop.
+            url (string): a url to the API with conversion rates for the 
+                currency converter.
+        """
         self.people = {}
         
         with open(person_file, "r", encoding="utf-8") as f:
