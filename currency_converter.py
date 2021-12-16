@@ -1,6 +1,7 @@
 """Simulates an online shop using a currency converter."""
 
 from argparse import ArgumentParser
+from os import name
 import sys
 import requests
 
@@ -61,8 +62,8 @@ class Person:
             raise ValueError("Insufficient funds!")
         
     def __repr__(self):
-        return f"Person({self.name}, {self.balance}, {self.membership}," 
-    "{self.to_country})"
+        return f"Person({self.name}, {self.balance}, {self.membership}, \
+            {self.to_country})"
 
 class Currency_Shop:
     """A shop in which customers can use any currency of their choosing.
@@ -133,8 +134,8 @@ class Currency_Shop:
         if name not in self.people:
             raise KeyError
         
-        person = Person(name, self.people[name][0], self.people[name][1], 
-                        self.people[name][2])
+        person = Person(name, self.people[name][0], self.people[name][1], \
+            self.people[name][2])
         return person
     
 def main(person_file, name):
@@ -150,16 +151,17 @@ def main(person_file, name):
     Side effects: 
         Prints information to the console.
     """
-   access_key = "a702f302693756a5c8c44b988f472fc6"
-   url = str.__add__('http://data.fixer.io/api/latest?access_key=', access_key)
-   currency_shop = Currency_Shop(person_file, url)
-   person = currency_shop.get_person(name)
-   print(f"{person.name}'s current balance is {person.balance} in USD.")
-   person.buy_ticket()
-   print(f"{person.name} purchased a plane ticket to {person.to_country.strip()}."
-         f" Their current balance is {person.balance} in USD.")
-   print(f"In {person.to_country.strip()}, {person.name}'s balance is" + 
-         "{currency_shop.converter(person.name,person.balance)}")
+    
+    access_key = "a702f302693756a5c8c44b988f472fc6"
+    url = str.__add__('http://data.fixer.io/api/latest?access_key=', access_key)
+    currency_shop = Currency_Shop(person_file, url)
+    person = currency_shop.get_person(name)
+    print(f"{person.name}'s current balance is {person.balance} in USD.")
+    person.buy_ticket()
+    print(f"{person.name} purchased a plane ticket to {person.to_country.strip()}."
+          f" Their current balance is {person.balance} in USD.")
+    print(f"In {person.to_country.strip()}, {person.name}'s balance is" 
+          f"{currency_shop.converter(person.name,person.balance)}")
             
 def parse_args(arglist):
     """ Parse command-line arguments.
