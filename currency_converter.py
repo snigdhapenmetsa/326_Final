@@ -61,7 +61,8 @@ class Person:
             raise ValueError("Insufficient funds!")
         
     def __repr__(self):
-        return f"Person({self.name}, {self.balance}, {self.membership}, {self.to_country})"
+        return f"Person({self.name}, {self.balance}, {self.membership}," 
+    "{self.to_country})"
 
 class Currency_Shop:
     """A shop in which customers can use any currency of their choosing.
@@ -87,11 +88,13 @@ class Currency_Shop:
         with open(person_file, "r", encoding="utf-8") as f:
             for line in f:
                 
-                self.name, self.balance, self.membership, self.to_country = line.strip().split(",")
+                self.name, self.balance, self.membership, self.to_country = \
+                    line.strip().split(",")
                 self.balance = float(self.balance)
                 self.membership = self.membership.strip()
                 
-                self.people[self.name] = (self.balance, self.membership, self.to_country)
+                self.people[self.name] = (self.balance, self.membership, 
+                                          self.to_country)
         
         values = requests.get(url).json()
         self.rates = values["rates"] 
@@ -99,7 +102,8 @@ class Currency_Shop:
     def converter(self, name, person_balance): 
     # This method is reliant on  source code from 
     # https://www.geeksforgeeks.org/currency-converter-in-python/
-    # I changed it to fit to our problem statement by modifying the variables in the calculations
+    # I changed it to fit to our problem statement by modifying the variables in 
+    # the calculations
         """Converts customer's balance originally in USD to desired currency
         Args: 
             name (str) = The person's name whose balance will be converted
@@ -128,7 +132,8 @@ class Currency_Shop:
         if name not in self.people:
             raise KeyError
         
-        person = Person(name, self.people[name][0], self.people[name][1], self.people[name][2])
+        person = Person(name, self.people[name][0], self.people[name][1], 
+                        self.people[name][2])
         return person
     
 def main(person_file, name):
@@ -140,7 +145,8 @@ def main(person_file, name):
    person.buy_ticket()
    print(f"{person.name} purchased a plane ticket to {person.to_country.strip()}."
          f" Their current balance is {person.balance} in USD.")
-   print(f"In {person.to_country.strip()}, {person.name}'s balance is {currency_shop.converter(person.name,person.balance)}")
+   print(f"In {person.to_country.strip()}, {person.name}'s balance is" + 
+         "{currency_shop.converter(person.name,person.balance)}")
             
 def parse_args(arglist):
     """ Parse command-line arguments.
