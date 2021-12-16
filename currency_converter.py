@@ -102,8 +102,9 @@ class Currency_Shop:
     # I changed it to fit to our problem statement by modifying the variables in the calculations
         """Converts customer's balance originally in USD to desired currency
         Args: 
-            name (str) = The person's name whose balance will be converted
-            person_balance (float) = the person's balance
+            name (str): The person's name whose balance will be converted
+            person_balance (float): the person's balance
+            
         Returns:
             float: the person's balance, converted into the currency of the 
                 desired country
@@ -132,6 +133,18 @@ class Currency_Shop:
         return person
     
 def main(person_file, name):
+    """Prints customer's original balance, the country in which they are visiting,
+        their balance after purhcasing the ticket, and their balance in the
+        currency of the country they are visiting.
+    
+    Args: 
+        person_file (string): the filepath to a .txt file with information
+            about people who can buy a plane ticket from the shop.
+        name (string): the name of a person.
+    
+    Side effects: 
+        Prints information to the console.
+    """
    access_key = "a702f302693756a5c8c44b988f472fc6"
    url = str.__add__('http://data.fixer.io/api/latest?access_key=', access_key)
    currency_shop = Currency_Shop(person_file, url)
